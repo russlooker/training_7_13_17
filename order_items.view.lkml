@@ -95,6 +95,38 @@ view: order_items {
     drill_fields: [detail*]
   }
 
+  measure: count_orders {
+    description: "Count of distinct orders"
+    type: count_distinct
+    sql: ${order_id} ;;
+  }
+
+  measure: total_sale_price {
+    value_format_name: usd
+    type:  sum
+    sql: ${sale_price} ;;
+  }
+
+  measure: average_sale_price {
+    type: average
+    sql: ${sale_price} ;;
+  }
+
+  measure: running_total_sale_price {
+    type: running_total
+    sql: ${total_sale_price} ;;
+  }
+
+  measure: percent_of_total_sale_price {
+    type: percent_of_total
+    sql: ${total_sale_price} ;;
+  }
+
+  measure: order_items_per_user {
+    type: number
+    sql: ${count}*1.0 / nullif(${users.count},0) ;;
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [

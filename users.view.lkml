@@ -132,4 +132,29 @@ view: users {
     type: count
     drill_fields: [id, first_name, last_name, events.count, order_items.count]
   }
+
+
+  measure: count_new_users {
+    type: count
+    filters: {
+      field: is_new_user
+      value: "Yes"
+    }
+  }
+
+  measure: percent_of_new_users {
+    type: number
+    value_format_name: percent_0
+    sql: ${count_new_users}*1.0 / nullif(${count},0) ;;
+  }
+
+
+
+
+
+
+
+
+
+
 }

@@ -85,4 +85,24 @@ view: inventory_items {
     type: count
     drill_fields: [id, product_name, products.id, products.name, order_items.count]
   }
+
+  measure: count_distinct_brand {
+    type: count_distinct
+    sql: ${product_brand} ;;
+  }
+
+  measure: average_cost {
+    type: average
+    sql: ${cost} ;;
+    value_format_name: usd
+  }
+
+  measure: count_ZOO_YORK {
+    type: count
+    filters: {
+      field: product_brand
+      value: "ZOO YORK"
+    }
+  }
+
 }
