@@ -7,9 +7,26 @@ view: users {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: address {
+    type: string
+    sql: ${city} || ', ' || ${state} || ', ' || ${zip} || ', ' || ${country} ;;
+  }
+
   dimension: age {
     type: number
     sql: ${TABLE}.age ;;
+  }
+
+  dimension: age_groups {
+    type: tier
+    tiers: [50]
+    sql: ${age} ;;
+    style: integer
+  }
+
+  dimension: is_under_21 {
+    type: yesno
+    sql: ${age} <= 21 ;;
   }
 
   dimension: city {
@@ -36,6 +53,23 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: days_since_signup {
+    type: number
+    sql: datediff('day', ${created_date}, getdate()) ;;
+  }
+
+  dimension: days_since_signup_tier {
+    type: tier
+    tiers: [30, 90, 180, 360, 720, 1000]
+    sql: ${days_since_signup} ;;
+    style: integer
+  }
+
+  dimension: is_new_user {
+    type: yesno
+    sql: ${days_since_signup} <= 90 ;;
+  }
+
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
@@ -44,6 +78,11 @@ view: users {
   dimension: first_name {
     type: string
     sql: ${TABLE}.first_name ;;
+  }
+
+  dimension: full_name {
+    type: string
+    sql: ${first_name} || ' ' || ${last_name} ;;
   }
 
   dimension: gender {
@@ -66,8 +105,15 @@ view: users {
     sql: ${TABLE}.longitude ;;
   }
 
+  dimension: location {
+    type: location
+    sql_latitude: ${latitude} ;;
+    sql_longitude: ${longitude} ;;
+  }
+
   dimension: state {
     type: string
+    map_layer_name: us_states
     sql: ${TABLE}.state ;;
   }
 
@@ -77,7 +123,8 @@ view: users {
   }
 
   dimension: zip {
-    type: string
+    type: zipcode
+    map_layer_name: us_zipcode_tabulation_areas
     sql: ${TABLE}.zip ;;
   }
 
