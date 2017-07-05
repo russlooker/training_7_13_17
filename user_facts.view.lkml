@@ -7,11 +7,12 @@ view: user_facts {
         ,min(created_at) as first_order_date
         ,max(created_at) as latest_order_date
       FROM public.order_items
+
       GROUP BY 1
        ;;
-    sql_trigger_value: SELECT MAX(created_at) FROM public.order_items ;;
-    sortkeys: ["user_id"]
-    distribution: "user_id"
+#     sql_trigger_value: SELECT MAX(created_at) FROM public.order_items ;;
+#     sortkeys: ["user_id"]
+#     distribution: "user_id"
   }
 
   filter: trade_type {

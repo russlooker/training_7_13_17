@@ -133,6 +133,12 @@ view: users {
     drill_fields: [id, first_name, last_name, events.count, order_items.count]
   }
 
+  measure: avg_age {
+    type: average
+    sql: ${age} ;;
+
+  }
+
 
   measure: count_new_users {
     type: count

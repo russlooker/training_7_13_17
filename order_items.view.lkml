@@ -62,7 +62,7 @@ view: order_items {
 
   dimension: sale_price {
     type: number
-    sql: ${TABLE}.sale_price ;;
+    sql: ${TABLE}.sale_price;;
   }
 
   dimension_group: shipped {
@@ -106,6 +106,17 @@ view: order_items {
     type:  sum
     sql: ${sale_price} ;;
   }
+
+  measure: total_sale_price_filtered {
+    value_format_name: usd
+    type:  sum
+    sql: ${sale_price} ;;
+    filters: {
+      field: users.age
+      value: ">50"
+    }
+  }
+
 
   measure: average_sale_price {
     type: average
