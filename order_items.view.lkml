@@ -107,17 +107,6 @@ view: order_items {
     sql: ${sale_price} ;;
   }
 
-  measure: total_sale_price_filtered {
-    value_format_name: usd
-    type:  sum
-    sql: ${sale_price} ;;
-    filters: {
-      field: users.age
-      value: ">50"
-    }
-  }
-
-
   measure: average_sale_price {
     type: average
     sql: ${sale_price} ;;
@@ -136,6 +125,16 @@ view: order_items {
   measure: order_items_per_user {
     type: number
     sql: ${count}*1.0 / nullif(${users.count},0) ;;
+  }
+
+  measure: total_sale_price_filtered {
+    value_format_name: usd
+    type:  sum
+    sql: ${sale_price} ;;
+    filters: {
+      field: users.age
+      value: ">50"
+    }
   }
 
   # ----- Sets of fields for drilling ------

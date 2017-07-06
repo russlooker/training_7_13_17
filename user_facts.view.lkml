@@ -64,20 +64,6 @@ view: user_facts {
     style: integer
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   set: detail {
     fields: [user_id, total_lifetime_sales, lifetime_item_count, first_order_date_time, latest_order_date_time]
   }
