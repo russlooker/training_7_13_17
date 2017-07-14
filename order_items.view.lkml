@@ -4,7 +4,7 @@ view: order_items {
   dimension: id {
     primary_key: yes
     type: number
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.id;;
   }
 
   dimension_group: created {
@@ -43,7 +43,7 @@ view: order_items {
 
   dimension: order_id {
     type: number
-    sql: ${TABLE}.order_id ;;
+    sql: ${TABLE}.order_id;;
   }
 
   dimension_group: returned {
@@ -98,7 +98,7 @@ view: order_items {
   measure: count_orders {
     description: "Count of distinct orders"
     type: count_distinct
-    sql: ${order_id} ;;
+    sql: ${order_id};;
   }
 
   measure: total_sale_price {
@@ -136,6 +136,20 @@ view: order_items {
       value: ">50"
     }
   }
+
+  measure: total_sale_price_filtered_custom {
+    value_format_name: usd
+    type:  sum
+    sql:
+    CASE
+      WHEN ${users.age} > ${users.id} THEN ${sale_price}
+      ELSE NULL
+    END
+     ;;
+  }
+
+
+
 
   # ----- Sets of fields for drilling ------
   set: detail {

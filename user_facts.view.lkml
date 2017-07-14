@@ -10,9 +10,9 @@ view: user_facts {
 
       GROUP BY 1
        ;;
-#     sql_trigger_value: SELECT MAX(created_at) FROM public.order_items ;;
-#     sortkeys: ["user_id"]
-#     distribution: "user_id"
+    sql_trigger_value: select current_date ;;
+    sortkeys: ["user_id"]
+    distribution: "user_id"
   }
 
   filter: trade_type {

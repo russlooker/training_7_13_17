@@ -7,10 +7,6 @@ include: "*.view"
 include: "*.dashboard"
 
 
-
-
-
-
 explore: order_items {
   join: users {
     type: left_outer
@@ -36,6 +32,9 @@ explore: order_items {
     relationship: many_to_one
   }
 }
+
+explore: user_facts {}
+
 
 explore: users {
   join: user_facts {
