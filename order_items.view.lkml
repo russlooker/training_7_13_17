@@ -46,6 +46,15 @@ view: order_items {
     sql: ${TABLE}.order_id;;
   }
 
+
+
+
+
+
+
+
+
+
   dimension_group: returned {
     type: time
     timeframes: [
