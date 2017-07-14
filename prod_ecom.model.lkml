@@ -36,17 +36,7 @@ explore: order_items {
 explore: user_facts {}
 
 
-explore: users {
-  join: user_facts {
-    fields: [user_facts.average_lifetime_value
-      , user_facts.first_order_date_date
-      , user_facts.latest_order_date_date]
-    view_label: "Users"
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${users.id} = ${user_facts.user_id} ;;
-  }
-}
+
 
 explore: products {
   join: distribution_centers {

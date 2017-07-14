@@ -7,6 +7,12 @@ view: users {
     sql: ${TABLE}.id ;;
   }
 
+#   dimension: custom_pk {
+#     type: string
+#     primary_key: yes
+#     sql:  ${last_name} || '-' || ${email} ;;
+#   }
+
   dimension: address {
     type: string
     sql: ${city} || ', ' || ${state} || ', ' || ${zip} || ', ' || ${country} ;;
