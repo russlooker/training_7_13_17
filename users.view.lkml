@@ -154,13 +154,4 @@ view: users {
     sql: ${count_new_users}*1.0 / nullif(${count},0) ;;
   }
 
-
-
-
-
-
-
-
-
-
 }
