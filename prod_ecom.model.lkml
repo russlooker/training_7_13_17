@@ -63,7 +63,7 @@ explore: products {
 #   }
 # }
 #
-# explore: foo {}
+
 #
 # explore: inventory_items {
 #   join: products {

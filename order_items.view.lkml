@@ -37,13 +37,15 @@ view: order_items {
 
   dimension: inventory_item_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.inventory_item_id ;;
   }
 
   dimension: order_id {
     type: number
+    label: "Order Key"
     sql: ${TABLE}.order_id;;
+#     description: "This is not to be confused with order id"
   }
 
 

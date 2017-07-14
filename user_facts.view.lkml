@@ -1,20 +1,29 @@
 view: user_facts {
   derived_table: {
     sql: SELECT
-         user_id
-        ,sum(sale_price) as total_lifetime_sales
+         OI.user_id
+        ,sum(OI.sale_price) as total_lifetime_sales
         ,count(*) as lifetime_item_count
-        ,min(created_at) as first_order_date
-        ,max(created_at) as latest_order_date
+        ,min(U.created_at) as first_order_date
+        ,max(U.created_at) as latest_order_date
         ,avg(sale_price) as avg_sale_per_user
-      FROM public.order_items
+      FROM public.order_items OI
+      JOIN public.users U on (OI.user_id = U.id)
+      WHERE
 
+        {%  condition created_date_filter %} U.created_at {% endcondition %}
       GROUP BY 1
        ;;
-    sql_trigger_value: select current_date ;;
-    sortkeys: ["user_id"]
-    distribution: "user_id"
+#     persist_for: "24 hours"
+#     sql_trigger_value: select current_date ;;
+#     sortkeys: ["user_id"]
+#     distribution: "user_id"
   }
+
+  filter: created_date_filter {
+    type: date
+  }
+
 
   dimension: avg_sale_per_user {
     type: number

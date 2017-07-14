@@ -2,14 +2,9 @@ view: user_facts_2 {
   derived_table: {
     sql: SELECT
          user_id
-        ,sum(sale_price) as total_lifetime_sales
-        ,count(*) as lifetime_item_count
-        ,min(created_at) as first_order_date
-        ,max(created_at) as latest_order_date
-        ,avg(sale_price) as avg_sale_per_user
-      FROM public.order_items
+        ,total_lifetime_sales - 100 as total_lifetime_sales
 
-      GROUP BY 1
+      FROM ${user_facts.SQL_TABLE_NAME}
  ;;
     sql_trigger_value: select current_date ;;
     sortkeys: ["user_id"]

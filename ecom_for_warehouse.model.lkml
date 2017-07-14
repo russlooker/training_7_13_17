@@ -9,7 +9,9 @@ explore: users {
   join: user_facts {
     fields: [user_facts.average_lifetime_value
       , user_facts.first_order_date_date
-      , user_facts.latest_order_date_date]
+      , user_facts.latest_order_date_date
+      , user_facts.created_date_filter
+      ]
     view_label: "Users"
     type: left_outer
     relationship: one_to_one
