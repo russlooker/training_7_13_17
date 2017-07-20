@@ -33,10 +33,20 @@ explore: order_items {
   }
 }
 
-explore: user_facts {}
+explore: users {
+  join: user_facts {
+#     fields: [user_facts.average_lifetime_value
+#       , user_facts.first_order_date_date
+#       , user_facts.latest_order_date_date
+#       , user_facts.created_date_filter
+#     ]
+    view_label: "Users"
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${users.id} = ${user_facts.user_id} ;;
+  }
 
-
-
+}
 
 explore: products {
   join: distribution_centers {
@@ -46,38 +56,7 @@ explore: products {
   }
 }
 
-# explore: users {}
 
-
-
-
-# explore: distribution_centers {}
-#
-# explore: etl_jobs {}
-#
-# explore: events {
-#   join: users {
-#     type: left_outer
-#     sql_on: ${events.user_id} = ${users.id} ;;
-#     relationship: many_to_one
-#   }
-# }
-#
-
-#
-# explore: inventory_items {
-#   join: products {
-#     type: left_outer
-#     sql_on: ${inventory_items.product_id} = ${products.id} ;;
-#     relationship: many_to_one
-#   }
-#
-#   join: distribution_centers {
-#     type: left_outer
-#     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
-#     relationship: many_to_one
-#   }
-# }
 
 explore: inventory_items {
   join: products {
