@@ -6,9 +6,9 @@ view: user_facts_2 {
 
       FROM ${user_facts.SQL_TABLE_NAME}
  ;;
-    sql_trigger_value: select current_date ;;
-    sortkeys: ["user_id"]
-    distribution: "user_id"
+#     sql_trigger_value: select current_date ;;
+#     sortkeys: ["user_id"]
+#     distribution: "user_id"
   }
 
   measure: count {
