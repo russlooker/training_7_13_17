@@ -7,6 +7,11 @@ view: order_items {
     sql: ${TABLE}.id;;
   }
 
+
+
+
+
+
   dimension_group: created {
     type: time
     timeframes: [
@@ -104,6 +109,7 @@ view: order_items {
   measure: count {
     type: count
     drill_fields: [detail*]
+
   }
 
   measure: count_orders {
