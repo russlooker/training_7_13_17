@@ -9,9 +9,6 @@ view: order_items {
 
 
 
-
-
-
   dimension_group: created {
     type: time
     timeframes: [

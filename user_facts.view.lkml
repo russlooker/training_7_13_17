@@ -4,14 +4,13 @@ view: user_facts {
          OI.user_id
         ,sum(OI.sale_price) as total_lifetime_sales
         ,count(*) as lifetime_item_count
-        ,min(U.created_at) as first_order_date
-        ,max(U.created_at) as latest_order_date
+        ,min(created_at) as first_order_date
+        ,max(created_at) as latest_order_date
         ,avg(sale_price) as avg_sale_per_user
       FROM public.order_items OI
-      JOIN public.users U on (OI.user_id = U.id)
       WHERE
+        {% condition users.created_date %} OI.created_at {% endcondition %}
 
-        {%  condition created_date_filter %} U.created_at {% endcondition %}
       GROUP BY 1
        ;;
 #     persist_for: "24 hours"

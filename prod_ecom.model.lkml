@@ -6,8 +6,6 @@ include: "*.view"
 # include all the dashboards
 include: "*.dashboard"
 
-
-
 explore: order_items {
   join: users {
     type: left_outer
@@ -41,7 +39,7 @@ explore: users {
 #       , user_facts.latest_order_date_date
 #       , user_facts.created_date_filter
 #     ]
-    view_label: "Users"
+#     view_label: "Users"
     type: left_outer
     relationship: one_to_one
     sql_on: ${users.id} = ${user_facts.user_id} ;;

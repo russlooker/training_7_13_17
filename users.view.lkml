@@ -25,13 +25,14 @@ view: users {
 
   dimension: age_groups {
     type: tier
-    tiers: [50]
+    tiers: [0,20,30,50]
     sql: ${age} ;;
-    style: integer
+    style: interval
   }
 
   dimension: is_under_21 {
     type: yesno
+    hidden: yes
     sql: ${age} <= 21 ;;
   }
 
@@ -145,6 +146,10 @@ view: users {
 
   }
 
+  measure: sum_age {
+    type: sum
+    sql: ${age} ;;
+  }
 
   measure: count_new_users {
     type: count
